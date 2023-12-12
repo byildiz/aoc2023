@@ -16,3 +16,30 @@ In part 2, we can substitute Js with 1s for value calculation. To find the type 
 
 ### Day 8
 For the second part, we can first find the required number of steps to cycle each of the XXA->XXZ paths, and then the answer will be least common multiple of those steps. The solution assumes that we are right at the beginning of each of the paths.
+
+### Day 9
+```
+p
+  p1
+a       p2
+  (b-a)          p3
+b       (c-2b+a)             p4
+  (c-b)          (d-3c+3b-a)                p5
+c       (d-2c+b)             (e-4d+6c-4b+a)                     0
+  (d-c)          (e-3d+3c-b)                (f-5e+10d-10c+5b-a)   0
+d       (e-2d+c)             (f-4e+6d-4c+b)                     0
+  (e-d)          (f-3e+3d-c)                n5
+e       (f-2e+d)             n4
+  (f-e)          n3
+f       n2
+  n1
+n
+```
+
+**Observations**
+1. The coefficients of the numbers are [the binomial coefficients](https://en.m.wikipedia.org/wiki/Binomial_coefficient).
+1. `n = f + n1 = f + (f-e) + n2 = f + (f-e) + (f-2e+d) + n3 = ...`
+1. `p = a - p1 = a - (b-a) + p2 = a - (b-a) + (c-2b+a) - p3 = ...`
+
+The rest is the implementation details.
+
