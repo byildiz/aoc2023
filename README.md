@@ -14,3 +14,5 @@ If we pretend a hand as a hexadecimal number (A: E, K: D, Q: C, J: B, T: A, 9: 9
 
 In part 2, we can substitute Js with 1s for value calculation. To find the type of a hand, we should convert jokers to the most frequent card in order to make the hand as strong as possible.
 
+### Day 8
+For the second part, we can first find the required number of steps to cycle each of the XXA->XXZ paths, and then the answer will be least common multiple of those steps. The solution assumes that we are right at the beginning of each of the paths.
