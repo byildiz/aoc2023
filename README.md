@@ -44,5 +44,98 @@ n
 The rest is the implementation details.
 
 ### Day 10
-For part 2, my approach is first expand the map (specifically double both rows and cols and fill them first with dots and then connect main loop with | and -) and then find the main loop. After finding main loop, starting from edge tiles, mark all the tiles outside of the main loop (start from a tile and if it is not part of main loop mark it and recursively look around it to mark them, too), then count the unmarked ones as inner tiles.
+For part 2, my approach is first expand the map (specifically double both rows and cols and fill them first with dots and then connect main loop with | and -) and then find the main loop. After finding main loop, starting from edge tiles, mark all the tiles outside of the main loop (tart from a tile and if it is not part of main loop mark it and recursively look around it to mark them, too). Once all the marking is done, we can delete the added rows and columns and savely count the unmarked ones as inner tiles.
 
+#### Example:
+**Original Map:**
+```
+..........
+.S------7.
+.|F----7|.
+.||....||.
+.||....||.
+.|L-7F-J|.
+.|..||..|.
+.L--JL--J.
+..........
+
+```
+
+**Expanded Map:**
+```
+....................
+....................
+..S-------------7...
+..|.............|...
+..|.F---------7.|...
+..|.|.........|.|...
+..|.|.........|.|...
+..|.|.........|.|...
+..|.|.........|.|...
+..|.|.........|.|...
+..|.L---7.F---J.|...
+..|.....|.|.....|...
+..|.....|.|.....|...
+..|.....|.|.....|...
+..L-----J.L-----J...
+....................
+....................
+....................
+```
+
+**Main Loop: 2**
+```
+00000000000000000000
+00000000000000000000
+00222222222222222000
+00200000000000002000
+00202222222222202000
+00202000000000202000
+00202000000000202000
+00202000000000202000
+00202000000000202000
+00202000000000202000
+00202222202222202000
+00200000202000002000
+00200000202000002000
+00200000202000002000
+00222222202222222000
+00000000000000000000
+00000000000000000000
+00000000000000000000
+```
+
+**Main Loop: 2, Outer Tiles: 1**
+```
+11111111111111111111
+11111111111111111111
+11222222222222222111
+11200000000000002111
+11202222222222202111
+11202111111111202111
+11202111111111202111
+11202111111111202111
+11202111111111202111
+11202111111111202111
+11202222212222202111
+11200000212000002111
+11200000212000002111
+11200000212000002111
+11222222212222222111
+11111111111111111111
+11111111111111111111
+11111111111111111111
+```
+
+**Shrunken Map:**
+```
+1111111111
+1222222221
+1222222221
+1221111221
+1221111221
+1222222221
+1200220021
+1222222221
+1111111111
+```
