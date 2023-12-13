@@ -43,3 +43,6 @@ n
 
 The rest is the implementation details.
 
+### Day 10
+For part 2, my approach is first expand the map (specifically double both rows and cols and fill them first with dots and then connect main loop with | and -) and then find the main loop. After finding main loop, starting from edge tiles, mark all the tiles outside of the main loop (start from a tile and if it is not part of main loop mark it and recursively look around it to mark them, too), then count the unmarked ones as inner tiles.
+
