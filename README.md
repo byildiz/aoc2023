@@ -139,3 +139,6 @@ For part 2, my approach is first expand the map (specifically double both rows a
 1222222221
 1111111111
 ```
+### Day 11
+Empty row means that we should add (expandCoeff-1) to the row numbers of each galaxy thich has greater row number than the empty row. The same goes for empty columns. We can do expantion in an efficient way: Sort both the galaxies by their row numbers and empty rows ids ascending then start expantion from reverse because the rows effects the rows coming after them. For empty columns, sort both galaxies by their column numbers and empty column ids again asceding and do the expantion again reverse for the same reason.
+
