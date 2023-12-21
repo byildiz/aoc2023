@@ -150,3 +150,6 @@ We can think of each row and column as a binary number (e.g., `#.## = 1011`). Fo
 
 ### Day 14
 The key observation is that after a certain number of cycles of tilting, the state of the platform begins to repeat itself. At that point, we can stop tilting and calculate the remaining number of cycles from the 1 billion cycles. After determining that number, we can perform those additional cycles of tilting. Lastly, we can calculate the final load.
+
+### Day 15
+We can maintain a hash map for each box. When inserting a new lens into a box, we need to keep track of the lens order. My approach is to use a counter for each box. By inserting a new lens with the current value of the corresponding counter, we can then sort them afterward.
