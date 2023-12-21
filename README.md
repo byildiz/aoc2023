@@ -144,3 +144,6 @@ Empty row means that we should add (expandCoeff-1) to the row numbers of each ga
 
 ### Day 12
 For the first part, create every possible pattern and check if it fits the template. For the second part, dynamic programming is required to make the solution efficient enough. Otherwise, trying every possible pattern would not be feasible in terms of time.
+
+### Day 13
+We can think of each row and column as a binary number (e.g., `#.## = 1011`). For the first part, we can search for mirror positions using brute force. For the second part, observe that if there is only one flipped bit, then the XOR of the number with the flipped bit and the original number is a power of 2. We can determine if a number is a power of 2 [efficiently](https://stackoverflow.com/a/600306/1306183). Using this observation, we can find a mirror point that contains only one flipped bit.
