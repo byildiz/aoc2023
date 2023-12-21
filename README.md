@@ -147,3 +147,6 @@ For the first part, create every possible pattern and check if it fits the templ
 
 ### Day 13
 We can think of each row and column as a binary number (e.g., `#.## = 1011`). For the first part, we can search for mirror positions using brute force. For the second part, observe that if there is only one flipped bit, then the XOR of the number with the flipped bit and the original number is a power of 2. We can determine if a number is a power of 2 [efficiently](https://stackoverflow.com/a/600306/1306183). Using this observation, we can find a mirror point that contains only one flipped bit.
+
+### Day 14
+The key observation is that after a certain number of cycles of tilting, the state of the platform begins to repeat itself. At that point, we can stop tilting and calculate the remaining number of cycles from the 1 billion cycles. After determining that number, we can perform those additional cycles of tilting. Lastly, we can calculate the final load.
