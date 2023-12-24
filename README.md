@@ -155,4 +155,7 @@ The key observation is that after a certain number of cycles of tilting, the sta
 We can maintain a hash map for each box. When inserting a new lens into a box, we need to keep track of the lens order. My approach is to use a counter for each box. By inserting a new lens with the current value of the corresponding counter, we can then sort them afterward.
 
 ### Day 16
-We can use any tree search algorithm here. To detect and break potential infinite loops, we can maintain a dynamic programming (DP) table. The state for the DP table includes the current location and the direction from which the beam enters the tile.
+We can use any tree search algorithm here. To detect and break potential infinite loops, we can maintain a dynamic programming (DP) lookup table. The state for the DP lookup table includes the current location and the direction from which the beam enters the tile.
+
+### Day 17
+We can use any tree search algorithm with a lookup table. The state will consist of position, direction, and repetition. The tricky point in part 2 is that we have to enter the last block at least 4 repetitions.
