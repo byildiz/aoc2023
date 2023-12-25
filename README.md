@@ -143,7 +143,7 @@ For part 2, my approach is first expand the map (specifically double both rows a
 Empty row means that we should add (expandCoeff-1) to the row numbers of each galaxy which has greater row number than the empty row. The same goes for empty columns. We can do expantion in an efficient way: Sort both the galaxies by their row numbers and empty rows ids ascending then start expantion from reverse because the rows effects the rows coming after them. For empty columns, sort both galaxies by their column numbers and empty column ids again asceding and do the expantion again reverse for the same reason.
 
 ### Day 12
-For the first part, create every possible pattern and check if it fits the template. For the second part, dynamic programming is required to make the solution efficient enough. Otherwise, trying every possible pattern would not be feasible in terms of time.
+For the first part, create every possible pattern and check if it fits the template. For the second part, dynamic programming is required to make the solution efficient enough. Otherwise, trying every possible pattern would not be feasible in terms of time. For second part I got the idea from [Jonathan's solution](https://www.youtube.com/watch?v=xTGkP2GNmbQ).
 
 ### Day 13
 We can think of each row and column as a binary number (e.g., `#.## = 1011`). For the first part, we can search for mirror positions using brute force. For the second part, observe that if there is only one flipped bit, then the XOR of the number with the flipped bit and the original number is a power of 2. We can determine if a number is a power of 2 [efficiently](https://stackoverflow.com/a/600306/1306183). Using this observation, we can find a mirror point that contains only one flipped bit.
@@ -159,3 +159,6 @@ We can use any tree search algorithm here. To detect and break potential infinit
 
 ### Day 17
 We can use any tree search algorithm with a lookup table. The state will consist of position, direction, and repetition. The tricky point in part 2 is that we have to enter the last block at least 4 repetitions.
+
+### Day 18
+The total volume of the lagoon is the sum of the perimeter of the loop and the number of points within the loop. For the first part, I created a matrix, drew the loop on it, and counted the points inside the loop using the DFS algorithm. However, this approach is not efficient enough for the second part of the question. I couldn't devise a solution for the second part until I understood [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem), [Green's theorem](https://en.wikipedia.org/wiki/Green%27s_theorem), and the [Shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula). For more information, please refer to [Jonathan's explanation](https://www.youtube.com/watch?v=UNimgm_ogrw).
