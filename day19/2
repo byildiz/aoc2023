@@ -1,0 +1,91 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"regexp"
+	"strconv"
+	"strings"
+)
+
+type Rule struct {
+	category  byte
+	condition byte
+	value     int
+	dest      string
+}
+
+type Workflow struct {
+	name  string
+	rules []Rule
+}
+
+type Part map[byte]int
+
+var workflows = make(map[string]Workflow)
+var parts = make([]Part, 0)
+
+func readWorkflows(f *os.File) {
+	re := regexp.MustCompile("(.+)\\{(.+)\\}")
+	re2 := regexp.MustCompile("(.)([><]+)(\\d+):(.*)")
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if len(line) == 0 {
+			break
+		}
+		rules := make([]Rule, 0)
+		matches := re.FindStringSubmatch(line)
+		for _, rule := range strings.Split(matches[2], ",") {
+			matches2 := re2.FindStringSubmatch(rule)
+			if len(matches2) > 0 {
+				value, _ := strconv.Atoi(matches2[3])
+				rules = append(rules, Rule{matches2[1][0], matches2[2][0], value, matches2[4]})
+			} else {
+				rules = append(rules, Rule{dest: rule})
+			}
+		}
+		workflows[matches[1]] = Workflow{matches[1], rules}
+	}
+	fmt.Println(workflows)
+}
+
+func readParts(f *os.File) {
+	re := regexp.MustCompile("\\{(.)=(\\d+),(.)=(\\d+),(.)=(\\d+),(.)=(\\d+)\\}")
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := scanner.Text()
+		matches := re.FindStringSubmatch(line)
+		fmt.Println(matches)
+	}
+}
+
+func firstPart(f *os.File) {
+	readWorkflows(f)
+	readParts(f)
+}
+
+func secondPart(f *os.File) {
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+}
+
+func main() {
+	inputPath := os.Args[1]
+	fmt.Println(inputPath)
+	f, err := os.Open(inputPath)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	if len(os.Args) == 2 {
+		fmt.Println("First part")
+		firstPart(f)
+	} else {
+		fmt.Println("Second part")
+		secondPart(f)
+	}
+}
