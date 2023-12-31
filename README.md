@@ -168,3 +168,6 @@ In the first part of the question, we can traverse the tree for each part and de
 
 ### Day 20
 We can view the Flip-Flop module as a JK flip-flop and the Conjunction as a NAND gate. The first part of the problem can be solved by simulating the circuit. For the second part, we need to investigate the circuit to gain insight into the internal wiring of `rx`. `rx` is the output of a conjunction named `df`, which has four inputs. `rx` receives a low pulse only when all inputs of `df` become high simultaneously. The inputs of `df` exhibit a cyclic behavior with varying periods. Therefore, the answer will be the least common multiple of these periods. For more information, please refer to [Jonathan's explanation](https://www.youtube.com/watch?v=3STpz-M-wiw).
+
+### Day 21
+The first part of the problem can be solved with breadth-first search (BFS). For the second part, I had to understand [Jonathan's solution](https://www.youtube.com/watch?v=C2dmxCGGH1s). Afterward, I developed my solution. Please refer to it for more information. The main observation for the solution is that after a certain number of tiles, the distances between the two points at the same location in consecutive tiles are equal to the number of rows (this is true if the number of rows is equal to the number of columns).
