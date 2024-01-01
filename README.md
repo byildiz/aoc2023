@@ -171,3 +171,10 @@ We can view the Flip-Flop module as a JK flip-flop and the Conjunction as a NAND
 
 ### Day 21
 The first part of the problem can be solved with breadth-first search (BFS). For the second part, I had to understand [Jonathan's solution](https://www.youtube.com/watch?v=C2dmxCGGH1s). Afterward, I developed my solution. Please refer to it for more information. The main observation for the solution is that after a certain number of tiles, the distances between the two points at the same location in consecutive tiles are equal to the number of rows (this is true if the number of rows is equal to the number of columns).
+
+### Day 22
+My approach to this problem is as follows: First, starting from the bottom and moving upwards, I relocate each block to its farthest possible position in the -z direction. Secondly, I calculate a dependency matrix that indicates which block supports another. With this matrix, I can determine how many supporters each block has. The steps taken up to this point apply to both the first and second parts of the problem. At this juncture, my approach diverges depending on the part of the problem.
+
+For the first part, a block can be safely disintegrated only if all the blocks it supports have two or more supporters.
+
+For the second part, if a block is disintegrated, I can safely reduce the number of supporters for the blocks it originally supported by one. If, after this reduction, any of these blocks have no supporters, it indicates that the block will fall. I can then recursively apply the same logic to those blocks and count all the blocks that end up with no support. By applying this procedure to each block and summing up the blocks with no supporters, we can determine the answer.
