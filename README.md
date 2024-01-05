@@ -181,3 +181,24 @@ For the second part, if a block is disintegrated, I can safely reduce the number
 
 ### Day 23
 The first part of the problem can be solved by exploring all possible paths using depth-first search (DFS), given that the paths form a directed graph. In the second part of the problem, since there are no directions on the edges, the problem transforms into the traveling salesman problem, which is NP-Hard. Brute-forcing with DFS on the raw input is not efficient. To solve the problem within a reasonable time frame, we need to condense the map into a more compact graph. This compact graph can be created as follows: Vertices will represent the entry point, destination point, and all branch points. Edges will connect these vertices, with weights assigned based on the length of the path between them.
+
+### Day 24
+For part one, we need to find the intersection point for each pair of vectors (the intersection point can be determined using [line-line intersection](https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection) with two points from each vector) if it exists. Then, we count the pairs where an intersection point exists, and this intersection point lies in the direction of the vectors.
+
+For part two, I got the idea from a comment below [Jonathan's solution](https://www.youtube.com/watch?v=vZa2jErpSg8). Here is my explanation for it:
+Let there are two hailstones (h1  and h2) with `x1`, `x2` starting positions and `vx1` and `vx2` velocities in x direction. The rock's starting position is `x` with `vx` speed in x direction. Collision times with the rock are `t1` and `t2` for h1 and h2. The two basic equations we have are:
+```
+x + vx*t1 = x1 + vx1*t1
+x + vx*t2 = x2 + vx2*t2
+```
+When we subtract two equations each other, we get `vx(t1-t2) = x1 + vx1*t1 - x2 - vx2*t2`. If `vx1` and `vx2` are equal, the equation becomes `vx(t1-t2) = x1 - x2 + vx1(t1 - t2)`. We can rearrange it: `(t1-t2) = (x1 - x2) / (vx - vx1)`. If we assume `t1` and `t2` are both integers, we get `(x1 - x2) % (vx - vx1) = 0`.
+Starting from a set of velocities for each axis, we can eleminate some of them for each hailstone pair with equal velocities in one of the x, y an z axis. We can find the correct velocities by searching in the remaining sets.
+
+Let's consider two hailstones `h1` and `h2` with starting positions `x1` and `x2`, and velocities `vx1` and `vx2` in the x-direction, respectively. The rock has an initial position `x` and a speed `vx` in the x-direction. The collision times for `h1` and `h2` with the rock are `t1` and `t2`, respectively. The two fundamental equations are:
+```
+x + vx*t1 = x1 + vx1*t1
+x + vx*t2 = x2 + vx2*t2
+```
+When we subtract the second equation from the first, we obtain `vx(t1-t2) = x1 + vx1*t1 - x2 - vx2*t2`. If `vx1` and `vx2` are equal, this simplifies to `vx(t1-t2) = x1 - x2 + vx1(t1 - t2)`. Rearranging this gives `(t1-t2) = (x1 - x2) / (vx - vx1)`. Assuming `t1` and `t2` are both integers, we have `(x1 - x2) % (vx - vx1) = 0`.
+
+By starting with a set of velocities for each axis, we can eliminate some velocities for each hailstone pair that have equal velocities in one of the x, y, or z axes. The correct velocities can then be determined by searching within the remaining sets.
