@@ -134,12 +134,12 @@ func findT(x1, vx1, y1, vy1, x2, vx2, y2, vy2, vx, vy int) (int, bool) {
 	dvx2 := vx - vx2
 	dvy1 := vy - vy1
 	dvy2 := vy - vy2
-	denom := dvy2 * dvx1 - dvx2 * dvy1
+	denom := dvy2*dvx1 - dvx2*dvy1
 	if denom == 0 {
 		return -1, false
 	}
-	num := (y2 - y1) * dvx2 - (x2 - x1) * dvy2
-	if num % denom != 0 {
+	num := (y2-y1)*dvx2 - (x2-x1)*dvy2
+	if num%denom != 0 {
 		return -1, true
 	}
 	t1 := num / denom
@@ -193,16 +193,16 @@ func secondPart(f *os.File) {
 		for _, vy := range pvys {
 			for _, vz := range pvzs {
 				valid := true
-				outer:
+			outer:
 				for i := 0; i < n-1; i++ {
 					t := -1
 					first := true
-					for j := i+1; j < n; j++ {
+					for j := i + 1; j < n; j++ {
 						v1, v2 := vectors[i], vectors[j]
 						v2 = vectors[j]
-						t00, ok0 := findT(int(v1.x), int(v1.vx), int(v1.y), int(v1.vy),int(v2.x), int(v2.vx), int(v2.y), int(v2.vy), vx, vy)
-						t11, ok1 := findT(int(v1.x), int(v1.vx), int(v1.z), int(v1.vz),int(v2.x), int(v2.vx), int(v2.z), int(v2.vz), vx, vz)
-						t22, ok2 := findT(int(v1.y), int(v1.vy), int(v1.z), int(v1.vz),int(v2.y), int(v2.vy), int(v2.z), int(v2.vz), vy, vz)
+						t00, ok0 := findT(int(v1.x), int(v1.vx), int(v1.y), int(v1.vy), int(v2.x), int(v2.vx), int(v2.y), int(v2.vy), vx, vy)
+						t11, ok1 := findT(int(v1.x), int(v1.vx), int(v1.z), int(v1.vz), int(v2.x), int(v2.vx), int(v2.z), int(v2.vz), vx, vz)
+						t22, ok2 := findT(int(v1.y), int(v1.vy), int(v1.z), int(v1.vz), int(v2.y), int(v2.vy), int(v2.z), int(v2.vz), vy, vz)
 						if !(ok0 && ok1 && ok2) {
 							continue
 						}
@@ -218,14 +218,14 @@ func secondPart(f *os.File) {
 				}
 				if valid {
 					v1, v2 := vectors[0], vectors[1]
-					t, ok := findT(int(v1.x), int(v1.vx), int(v1.y), int(v1.vy),int(v2.x), int(v2.vx), int(v2.y), int(v2.vy), vx, vy)
+					t, ok := findT(int(v1.x), int(v1.vx), int(v1.y), int(v1.vy), int(v2.x), int(v2.vx), int(v2.y), int(v2.vy), vx, vy)
 					if !ok {
 						panic("try another pair")
 					}
-					x := int(v1.x + (v1.vx - float64(vx)) * float64(t))
-					y := int(v1.y + (v1.vy - float64(vy)) * float64(t))
-					z := int(v1.z + (v1.vz - float64(vz)) * float64(t))
-					fmt.Println(x+y+z)
+					x := int(v1.x + (v1.vx-float64(vx))*float64(t))
+					y := int(v1.y + (v1.vy-float64(vy))*float64(t))
+					z := int(v1.z + (v1.vz-float64(vz))*float64(t))
+					fmt.Println(x + y + z)
 				}
 			}
 		}
