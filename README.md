@@ -202,3 +202,6 @@ x + vx*t2 = x2 + vx2*t2
 When we subtract the second equation from the first, we obtain `vx(t1-t2) = x1 + vx1*t1 - x2 - vx2*t2`. If `vx1` and `vx2` are equal, this simplifies to `vx(t1-t2) = x1 - x2 + vx1(t1 - t2)`. Rearranging this gives `(t1-t2) = (x1 - x2) / (vx - vx1)`. Assuming `t1` and `t2` are both integers, we have `(x1 - x2) % (vx - vx1) = 0`.
 
 By starting with a set of velocities for each axis, we can eliminate some velocities for each hailstone pair that have equal velocities in one of the x, y, or z axes. The correct velocities can then be determined by searching within the remaining sets.
+
+### Day 25
+I wrote a [Python code](./day25/draw.py) to draw the graph. In the graph, the three edges are clearly visible. So, I manually removed them, and using a simple depth-first search, I calculated the answer.
